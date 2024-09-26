@@ -1,0 +1,28 @@
+/* LiquidProgressBar.css */
+.liquid-progress-bar {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+  }
+  
+  .liquid-progress-bar svg {
+    display: block;
+  }
+  
+  .liquid-progress-bar path {
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.5s ease-in-out;
+  }
+  
+  .progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+  }
+  
