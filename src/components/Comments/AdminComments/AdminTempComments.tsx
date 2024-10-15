@@ -9,7 +9,7 @@ export default function AdminTempComments() {
     const user = useAppSelector(selectUser);
     return (
         user ? tempComments
-            .filter(i => !deletedItems.includes(i.id))
-            .map(item => <CommentItem key={item.id} {...item} user={user} />) : null
+            .filter(i => !deletedItems.includes(i?.id))
+            .map(item => <CommentItem key={item?.id} {...item} user={user} />) : null
     )
 }

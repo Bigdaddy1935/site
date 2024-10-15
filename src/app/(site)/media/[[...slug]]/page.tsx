@@ -9,10 +9,12 @@ import { PaginateData } from "@/types/response";
 import MediaPageContent from "@/components/Routes/Media/MedialPageContent";
 import LoadingBox from "@/components/Assets/LoadingBox";
 import {
+  cFetch,
   getAllMediaLessons,
   getMediaCourses,
   getMediaLessons,
 } from "@/lib/fetch";
+import MediaPageClient from "@/components/Routes/Media/MediaPageClient";
 
 const mediaUrls: KeyValue = {
   medias: "آکادمی",
@@ -26,6 +28,53 @@ type Props = {
   };
 };
 
+export async function generateStaticParams() {
+  const [medias, kolbe, mahdyar] = await Promise.all([
+    cFetch(`/courses/ids?type=media`),
+    cFetch(`/courses/ids?type=kolbe`),
+    cFetch(`/courses/ids?type=mahdyar`),
+  ]);
+
+  return [
+    ["medias"],
+    ["kolbe"],
+    ["mahdyar"],
+    ...medias.map((course: any) => ({
+      slug: [`medias`, `course-${course.id}`],
+    })),
+    ...kolbe.map((course: any) => ({
+      slug: [`kolbe`, `course-${course.id}`],
+    })),
+    ...medias.map((course: any) => ({
+      slug: [`mahdyar`, `course-${course.id}`],
+    })),
+  ];
+}
+
+async function fetchData(courseId: string | null, courseType: string) {
+  try {
+    const courses = await getMediaCourses(courseType);
+
+    const currentCourseId = courseId
+      ? courseId
+      : courseType === "medias"
+        ? "all_media"
+        : String(courses.data[0].id);
+
+    const lessons =
+      currentCourseId === "all_media"
+        ? await getAllMediaLessons()
+        : await getMediaLessons(currentCourseId);
+
+    return {
+      currentCourseId,
+      courses,
+      lessons,
+    };
+  } catch (error) {
+    throw new Error("Failed to fetch revenue data.");
+  }
+}
 /* export async function generateMetadata({
   params: { slug = ["medias", null] },
 }: Props): Promise<Metadata> {
@@ -58,50 +107,19 @@ export default async function MediaPage(props: Props) {
 
   if (!slug?.[0]) redirect("/media/medias");
   const courseType = slug?.[0] ?? "medias";
+  const courseId = slug[1]?.split("-").pop() ?? null;
 
-  const courses = await getMediaCourses(courseType);
-
-  const courseId = slug[1]?.split("-").pop();
-  const currentCourseId = courseId
-    ? courseId
-    : courseType === "medias"
-      ? "all_media"
-      : String(courses.data[0].id);
-
-  const lessons =
-    currentCourseId === "all_media"
-      ? await getAllMediaLessons()
-      : await getMediaLessons(currentCourseId);
+  const { courses, lessons, currentCourseId } = await fetchData(
+    courseId,
+    courseType
+  );
 
   return (
-    <div className="flex flex-col lg:flex-row justify-between">
-      <Suspense fallback={null}>
-        <MediaSidebar
-          courses={courses?.data}
-          courseType={courseType}
-          currentCourseId={+currentCourseId}
-        />
-      </Suspense>
-      <div className="lg:w-[calc(100vw-230px)] flex justify-center px-6 lg:px-2">
-        <Suspense fallback={<LoadingBox />}>
-          {currentCourseId ? (
-            <MediaPageContent
-              lessons={lessons.data}
-              route={
-                currentCourseId === "all_media"
-                  ? {
-                      url: "/lessons/get/all_media/data",
-                      method: "get",
-                    }
-                  : {
-                      url: `/lessons/get/courseId/${currentCourseId}`,
-                      method: "get",
-                    }
-              }
-            />
-          ) : null}
-        </Suspense>
-      </div>
-    </div>
+    <MediaPageClient
+      courseType={courseType}
+      courses={courses}
+      currentCourseId={currentCourseId}
+      lessons={lessons}
+    />
   );
 }

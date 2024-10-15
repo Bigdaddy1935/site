@@ -4,7 +4,6 @@ import EmptyButton from "@/components/Assets/EmptyButton";
 import IconHeart from "@/components/Icons/IconHeart";
 import IconHeartFill from "@/components/Icons/IconHeartFill";
 import IconLoading from "@/components/Icons/IconLoading";
-import { useLoginPopup } from "@/lib/LoginPopupContext";
 import { selectUser } from "@/lib/reduxFeatures/authSlice";
 import { useAppSelector } from "@/lib/reduxHooks";
 import { useLikeMutation } from "@/lib/services/auth";
@@ -24,7 +23,6 @@ type Props = {
 export default function ToggleWishlistBtn(props: Props) {
     const { id, like, like_count, model, color, hiddenCount } = props;
     const [handleLike, { isLoading }] = useLikeMutation();
-    const { setActive } = useLoginPopup()
     const [click, setClick] = useState(like);
     const user = useAppSelector(selectUser);
     const handleClick = () => {

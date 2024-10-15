@@ -151,7 +151,7 @@ export type PodcastListItem = {
 export type User = {
   id: number;
   authority: string | null;
-  mahdyar_exists: boolean;
+  mahdyar: MahdyarExists | null;
   phone: string;
   fullname: string;
   username: string;
@@ -382,4 +382,60 @@ export type SiteStatistics = {
   lessons_count: number;
   course_users_count: number;
   mahdyar_club_count: number;
+}
+
+export enum PlanType {
+  NORMAL = "normal",
+  GOLD = "gold",
+  VIP = "vip",
+}  
+
+
+export type State = {
+  id: number;
+  name: string;
+};
+
+export type City = {
+  id: number;
+  province_id: number;
+  name: string;
+};
+
+
+export type ClubPlanItem = {
+  label: string;
+  image : string;
+  price: number;
+  discount: number;
+  spic_label?: string;
+  channel: string;
+  type: PlanType;
+  facilities: {
+    label: string;
+    status: number;
+  }[];
+};
+
+
+export type MahdyarExists = {
+  id: number,
+    user_id: number,
+    fullname: string,
+    gender: 1 | 0,
+    national_code: string,
+    birthday: string,
+    parent_num: string,
+    amount: number,
+    authority: string,
+    club_type: PlanType,
+    register_club_from: string,
+    employee_num: null,
+    relation: null,
+    messenger_num: null,
+    address: string,
+    postal: string,
+    city: string,
+    state: string,
+    status: 1 | 0,
 }

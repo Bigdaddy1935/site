@@ -21,7 +21,7 @@ export default function QuizList({ course_id }: { course_id: number }) {
   const checkAccess = useMemo(() => {
     if (!user) return <NeedAuthError />;
 
-    if (!user?.mahdyar_exists && !user?.authority) return <AccessError />;
+    if (!user?.mahdyar && !user?.authority) return <AccessError />;
 
     return null;
   }, [user]);

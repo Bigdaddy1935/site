@@ -1,17 +1,23 @@
 import Container from "@/components/Assets/Container";
-import { htmlRemoveRegex } from "@/constant/constants";
-import { Query } from "@/lib/axios";
 import { abort } from "process";
-import { LessenItem } from "@/types";
-import LessomPageLayout from "@/components/Routes/SingleLessonPage/LessomPageLayout";
+import { cFetch } from "@/lib/fetch";
+import LessonPageLayoutClient from "@/components/Routes/SingleLessonPage/LessonPageLayoutClient";
 
 type Props = {
   params: {
     slug: string;
   };
 };
+
+export async function generateStaticParams() {
+  const lessons = await cFetch(`/lessons/ids`);
+
+  return lessons.map((lesson: any) => ({
+    slug: `${lesson.course_id}-${lesson.id}`,
+  }));
+}
 export async function generateMetadata({ params: { slug } }: Props) {
-/*   const lessonId = slug.split("-")[1];
+  /*   const lessonId = slug.split("-")[1];
 
   if (!lessonId) return {};
   const lesson = await Query<{ lessons: LessenItem }>(
@@ -31,21 +37,21 @@ export async function generateMetadata({ params: { slug } }: Props) {
     .replaceAll(htmlRemoveRegex, ""); */
   return {
     title: `آکادمی روح بخش`,
- //   description: shortDescription,
+    //   description: shortDescription,
     openGraph: {
       title: `آکادمی روح بخش`,
-  //    description: shortDescription,
+      //    description: shortDescription,
     },
   };
 }
 
 export default function LessonPage({ params: { slug } }: Props) {
-  const [course_id, lesson_id] = slug.split("-");
+  const [course_id, lesson_id] = slug?.split("-");
   if (!course_id || !lesson_id) abort();
 
   return (
     <Container>
-      <LessomPageLayout
+      <LessonPageLayoutClient
         lessonId={Number(lesson_id)}
         courseId={Number(course_id)}
       />

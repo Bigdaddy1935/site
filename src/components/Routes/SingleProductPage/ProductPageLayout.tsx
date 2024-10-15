@@ -6,29 +6,30 @@ import HeaderSetTitle from "@/components/Layout/HeaderSetTitle";
 import Hidden from "@/components/Assets/Hidden";
 import LessonsList from "../SingleCoursePage/LessonsList";
 import Comments from "@/components/Comments";
-import { getProductComments } from "@/lib/comments/getComments";
 import Image from "@/components/Assets/Image";
 import CourseDetails from "../SingleCoursePage/CourseDetails";
-import { useGetProductDataQuery } from "@/lib/services/base";
 import VideoPlayer from "@/components/Assets/VideoPlayer";
 import { isExists } from "@/lib/utils";
 import { Model } from "@/types";
 import IconLoading from "@/components/Icons/IconLoading";
 import { useAppSelector } from "@/lib/reduxHooks";
 import { selectUser } from "@/lib/reduxFeatures/authSlice";
+import { useLazyGetProductDataQuery } from "@/lib/services/base";
 
-type Props = {
+export type ProductPageLayoutProps = {
   productId: number;
 };
 
-export default function ProductPageLayout({ productId }: Props) {
+export default function ProductPageLayout({ productId }: ProductPageLayoutProps) {
   const user = useAppSelector(selectUser);
-  const { data, isLoading, isError } = useGetProductDataQuery(
-    { productId },
-    { skip: !productId, refetchOnMountOrArgChange: true }
-  );
+  const [getProduct, { data, isLoading, isError }] = useLazyGetProductDataQuery();
 
   const product = data?.product;
+
+
+  useEffect(() => {
+    if (productId) getProduct({ productId })
+  }, [user])
 
   return (
     <React.Fragment>
@@ -53,16 +54,16 @@ export default function ProductPageLayout({ productId }: Props) {
             />
 
             <ProductAddToCart
-              price={product.price}
-              price_discount={product.price_discount}
-              product_id={product.id}
-              invoices_exists={product.invoices_exists || product.paid}
+              price={product?.price}
+              price_discount={product?.price_discount}
+              product_id={product?.id}
+              invoices_exists={product?.invoices_exists || product.paid}
             />
 
             <LessonsList
-              courseId={product.courses.id}
-              invoices_exists={product.paid}
-              type={product.courses.type as Model}
+              courseId={product?.courses.id}
+              invoices_exists={product?.paid}
+              type={product?.courses?.type as Model}
             />
 
             <Comments
@@ -72,10 +73,10 @@ export default function ProductPageLayout({ productId }: Props) {
             />
           </div>
           <div className="top-[100px] lg:sticky lg:w-[50%] lg:flex-1 lg:self-start lg:p-6">
-            {isExists(product.courses.intro) ? (
+            {isExists(product.courses?.intro) ? (
               <VideoPlayer
-                poster={product.courses.picture}
-                src={product.courses.intro!}
+                poster={product.courses?.picture}
+                src={product.courses?.intro!}
               />
             ) : (
               <div className="relative">
@@ -91,11 +92,11 @@ export default function ProductPageLayout({ productId }: Props) {
             )}
 
             <CourseDetails
-              {...product.courses}
-              like={product.like}
+              {...product?.courses}
+              like={product?.like}
               like_count={product.like_count}
-              bookmark={product.bookmark}
-              product_id={product.id}
+              bookmark={product?.bookmark}
+              product_id={product?.id}
               categories={product?.categories}
             />
           </div>

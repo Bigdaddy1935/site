@@ -30,7 +30,7 @@ export default function CourseCard(props: CourseListItem) {
 
   const category = categories?.[0];
   return (
-    <div className="overflow-hidden rounded-xl border dark:border-mdark-400 border-solid shadow-md">
+    <div className="overflow-hidden rounded-[1.5rem] border dark:border-mdark-400 border-solid shadow-md">
       <div className="p-3 rounded-xl overflow-hidden">
         <NextLink
           className="relative  w-full h-[14rem]  block"

@@ -60,7 +60,7 @@ export default function LatestComments({ items }: Props) {
                   <Paper className="flex h-[400px] flex-col justify-center shadow-[0_0_1px_2px_#ababab1f] lg:h-[300px]">
                     <div className="flex flex-1 items-center justify-center">
                       <p className="leading-5 text-hgray-600 dark:text-text-dark-3">
-                        {comment.body}
+                        {comment?.body}
                       </p>
                     </div>
                     <div className="flex items-center justify-center">
@@ -69,14 +69,14 @@ export default function LatestComments({ items }: Props) {
                         height={50}
                         alt=""
                         className="h-[50px] w-[50px] overflow-hidden rounded-full object-cover"
-                        src={comment.user.picture ?? '/default-profile.png'}
+                        src={comment?.user?.picture ?? '/default-profile.png'}
                       />
                       <div className="pr-3">
                         <p className="font-medium text-hgray-600 dark:text-text-dark-3">
-                          {dispayUserName(comment.user.username)}
+                          {dispayUserName(comment?.user?.username)}
                         </p>
                         <p className="ltr text-right text-sm text-hgray-400 dark:text-hgray-200">
-                          {toPersianDateTimeFormat(comment.created_at)}
+                          {toPersianDateTimeFormat(comment?.created_at)}
                         </p>
                       </div>
                     </div>

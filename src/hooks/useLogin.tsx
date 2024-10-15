@@ -12,8 +12,8 @@ export default function useLogin() {
   const router = useNextRouter();
   useEffect(() => {
     if (user) {
-     // router.push(redirect ?? "/profile");
-      router.push("/");
+      router.push(redirect ?? "/profile");
+     // router.push("/");
     }
   }, [user]);
 }

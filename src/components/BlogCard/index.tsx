@@ -20,7 +20,7 @@ export default function BlogCart(props: BlogListItem) {
   } = props;
   const category = categories[0];
   return (
-    <div className="overflow-hidden rounded-xl shadow-md border dark:border-mdark-400 border-solid">
+    <div className="overflow-hidden rounded-[1.5rem] shadow-md border dark:border-mdark-400 border-solid">
       <div className="p-3">
         <NextLink
           className="block relative overflow-hidden h-[14rem]"
@@ -40,7 +40,7 @@ export default function BlogCart(props: BlogListItem) {
           <NextLink
             style={{
               borderColor: category?.color,
-              color: category.color,
+              color: category?.color,
             }}
             className="ml-1 inline-block rounded-md  border border-solid px-2 text-sm font-light"
             href={`/articles/${category?.slug}-${category?.id}`}

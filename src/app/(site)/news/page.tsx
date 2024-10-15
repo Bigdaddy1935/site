@@ -1,23 +1,8 @@
 import ContainerLayout from "@/components/Assets/ContainerLayout";
-import { abort } from "process";
 import NewsPageLayout from "@/components/Routes/News/NewsPageLayout";
+import { getNews } from "@/lib/fetch";
 import { Suspense } from "react";
 
-async function getNews() {
-  let data = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/home/notification/get`,
-    {
-      next: { revalidate: 7200 },
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    }
-  );
-  let jsonData = await data.json();
-
-  return jsonData;
-}
 export const metadata = {
   title: `اخبار جدید | آکادمی روحبخش`,
 };

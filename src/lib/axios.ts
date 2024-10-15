@@ -3,7 +3,7 @@ import { getCookie } from "cookies-next";
 
 export const axiosInstance = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_SERVER_URL}`,
-  timeout: 5000,
+  timeout: 20000,
   headers: {
     Accept: "application/json",
   },

@@ -9,8 +9,9 @@ import LessonItem from "./LessonItem";
 import LessonListTab, { TabType } from "./LessonListTab";
 import MorLessonItem from "./MorLessonItem";
 import LessonSearch from "./LessonSearch";
-import { useAppDispatch } from "@/lib/reduxHooks";
+import { useAppDispatch, useAppSelector } from "@/lib/reduxHooks";
 import { setQuiz } from "@/lib/reduxFeatures/headerSlice";
+import { selectUser } from "@/lib/reduxFeatures/authSlice";
 
 type ClubLessonRes = { quiz: boolean; lessons: PaginateData<LessenItem> };
 type Props = {
@@ -26,6 +27,7 @@ export default function LessonsList(props: Props) {
   const [lastPage, setLastPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
+  const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const handleUpdateData = useCallback(() => {
     setLoading(true);
@@ -52,10 +54,10 @@ export default function LessonsList(props: Props) {
         setLastPage(lessonsRes.last_page);
       })
       .finally(() => setLoading(false));
-  }, [activeTab, courseId]);
+  }, [activeTab, courseId, invoices_exists, user]);
   useEffect(() => {
     !loading && activeTab && handleUpdateData();
-  }, [activeTab, search]);
+  }, [activeTab, search, invoices_exists, user]);
 
   return (
     <div className="mt-4">
@@ -65,8 +67,8 @@ export default function LessonsList(props: Props) {
       <div className="mt-8 flex flex-col gap-3">
         {loading
           ? Array.from({ length: 5 }).map((_, index) => (
-              <Skeleton height={55} key={index} />
-            ))
+            <Skeleton height={55} key={index} />
+          ))
           : null}
 
         {lessonList.length === 0 && !loading ? (

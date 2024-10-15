@@ -43,7 +43,7 @@ export default function CategoryPageHeader({
             <React.Fragment>
               {category?.id === cat.id ? (
                 <EmptyButton
-                  style={{ color: cat.color, borderColor: cat.color }}
+                  style={{ color: cat?.color, borderColor: cat?.color }}
                   className="rounded-lg border border-solid p-2 text-sm"
                 >
                   {cat.name}

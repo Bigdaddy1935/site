@@ -47,7 +47,7 @@ export default function TeacherSelect() {
         </>
       ) : (
         <>
-          {filters.teacher && (
+          {filters?.teacher && (
             <EmptyButton
               onClick={() => handleSelect(null)}
               className="to-to-hgray-200 my-0.5 flex h-[40px] w-full items-center justify-between rounded-lg bg-gradient-to-r from-primary-400 from-0% to-30% p-1 hover:to-100%"

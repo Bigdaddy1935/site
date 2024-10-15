@@ -5,6 +5,7 @@ import { authApi } from "@/lib/services/auth";
 import { Season, User } from "@/types/";
 
 type Action = "login" | "signup" | "reset-password";
+
 export interface AuthSliceState {
   user_token: string | null | undefined;
   user: User | null;
@@ -50,10 +51,12 @@ export const authSlice = createAppSlice({
     ),
 
     login: create.reducer(
-      (state, action: PayloadAction<{ user: User; user_token: string }>) => {
+      (state, action: PayloadAction<{ user?: User; user_token: string }>) => {
         state.user_token = action.payload.user_token;
-        state.user = action.payload.user;
-        setCookie("user_token", action.payload.user_token);
+        if (action.payload.user) state.user = action.payload.user;
+        setCookie("user_token", action.payload.user_token, {
+          maxAge: 60 * 60 * 24 * 7,
+        });
       }
     ),
   }),
@@ -90,7 +93,7 @@ export const authSlice = createAppSlice({
           state.user = payload.user;
           state.user_token = payload.Token;
           state.season = payload.season;
-          setCookie("user_token", payload.Token);
+          setCookie("user_token", payload.Token, { maxAge: 60 * 60 * 24 * 7 });
         }
       );
     builder.addMatcher(
@@ -99,7 +102,7 @@ export const authSlice = createAppSlice({
         state.user = payload.user;
         state.user_token = payload.Token;
         state.season = payload.season;
-        setCookie("user_token", payload.Token);
+        setCookie("user_token", payload.Token,  { maxAge: 60 * 60 * 24 * 7 });
       }
     );
     builder.addMatcher(
@@ -108,7 +111,7 @@ export const authSlice = createAppSlice({
         state.user = payload.user;
         state.user_token = payload.Token;
         state.season = payload.season;
-        setCookie("user_token", payload.Token);
+        setCookie("user_token", payload.Token, { maxAge: 60 * 60 * 24 * 7 });
       }
     );
     builder.addMatcher(

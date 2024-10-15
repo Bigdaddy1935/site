@@ -4,6 +4,7 @@ import Button from "@/components/Assets/Button";
 import EmptyButton from "@/components/Assets/EmptyButton";
 import IconChevronLeft from "@/components/Icons/IconChevronLeft";
 import IconLock from "@/components/Icons/IconLock";
+import useClubToken from "@/hooks/useClubToken";
 import useNextRouter from "@/hooks/useNextRouter";
 import { selectUser } from "@/lib/reduxFeatures/authSlice";
 import { useAppSelector } from "@/lib/reduxHooks";
@@ -20,6 +21,7 @@ const terms = [
 ];
 
 export default function ClubTermList({}: Props) {
+  useClubToken();
   return (
     <div className="flex flex-col gap-4">
       {terms.map((item, index) => (

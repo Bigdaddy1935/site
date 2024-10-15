@@ -25,7 +25,7 @@ export default function ProductCard(props: ProductListItem) {
   const { picture, course_title, lessons_count, course_teacher } = courses;
   const category = categories[0];
   return (
-    <div className="relative overflow-hidden rounded-xl shadow-md border dark:border-mdark-400 border-solid">
+    <div className="relative overflow-hidden rounded-[1.5rem] shadow-md border dark:border-mdark-400 border-solid">
       <div className="p-3 rounded-xl overflow-hidden">
         <NextLink className='relative block h-[14rem]' href={`/product/product-${id}`}>
           <Image

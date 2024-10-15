@@ -49,8 +49,8 @@ export default function CategoryList(props: Props) {
           <NextLink
             withQueryString
             className={clsx(
-              !categoryId && 'border-primary-300',
-              `flex w-full items-center justify-between border-r-[3px] border-solid py-3 pl-1 pr-4 text-base text-primary-700 `
+              !categoryId ?  'border-primary-300 bg-primary-100/20 text-primary-100' : 'text-primary-700 dark:text-primary-100',
+              `flex w-full items-center justify-between border-r-[3px] border-solid py-3 pl-1 pr-4 text-base`
             )}
             href={`/${pageType}s`}
           >
@@ -60,15 +60,15 @@ export default function CategoryList(props: Props) {
           {data?.map((item) => (
             <NextLink
               withQueryString
-              key={item.id}
-              style={{ color: item.color }}
+              key={item?.id}
+              style={{ color: item?.color }}
               className={clsx(
                 categoryId && categoryId === item.id && 'border-primary-300 bg-primary-100/20',
                 `mt-1 flex w-full items-center justify-between border-r-[3px]  border-solid py-3 pl-1 pr-4 text-base`
               )}
-              href={`/${pageType}s/${item.slug}-${item.id}`}
+              href={`/${pageType}s/${item?.slug}-${item?.id}`}
             >
-              {item.name}
+              {item?.name}
               <IconChevronLeft width={22} height={22} />
             </NextLink>
           ))}
@@ -87,7 +87,7 @@ export default function CategoryList(props: Props) {
   };
 
   const findCategoryName = () => {
-    return data?.find((i) => i.id === categoryId)?.name;
+    return data?.find((i) => i?.id === categoryId)?.name;
   };
   return (
     <>

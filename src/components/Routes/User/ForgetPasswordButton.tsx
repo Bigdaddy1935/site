@@ -17,7 +17,7 @@ export default function ForgetPasswordButton() {
 
 
   return (
-    <EmptyButton type='button' onClick={handleClick} className="flex justify-between text-hgray-500 bg-hgray-300 dark:bg-mdark-500 dark:text-text-dark-3 items-center p-4 rounded-lg">
+    <EmptyButton type='button' onClick={handleClick} className="flex justify-between text-hgray-500 bg-hgray-300 dark:bg-mdark-500 dark:text-text-dark-3 items-center p-2 lg:p-4 rounded-lg">
       <span className="flex text-sm font-medium items-center">
         <IconLock width={22} height={22} />
         فراموشی رمز عبور

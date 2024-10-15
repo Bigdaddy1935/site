@@ -2,8 +2,8 @@
 import Paper from "@/components/Assets/Paper";
 import Divider from "@/components/Divider";
 import { useDepositHistoryQuery } from "@/lib/services/wallet";
-import Skeleton from "react-loading-skeleton";
 import WalletItem from "./WalletItem";
+import Skeleton from "@/components/Assets/Skeleton";
 
 export default function WalletSummery() {
   const { data, isLoading } = useDepositHistoryQuery();

@@ -18,12 +18,12 @@ import { useParams } from "next/navigation";
 import NextLink from "@/components/Assets/NextLink";
 import IconArrowLeftShort from "@/components/Icons/IconArrowLeftShort";
 
-type Props = {
+export type LessonPageLayoutProps = {
   lessonId: number;
   courseId: number;
 };
 
-export default function LessomPageLayout({ lessonId, courseId }: Props) {
+export default function LessonPageLayout({ lessonId, courseId }: LessonPageLayoutProps) {
   const season = useAppSelector(selectUserSeason);
   const params = useParams();
   const { isLoading, data, isError } = useGetLessonDataQuery(
@@ -45,7 +45,7 @@ export default function LessomPageLayout({ lessonId, courseId }: Props) {
           <Hidden hidden="lg">
             <HeaderSetTitle label={lessonData.title} needAnimation={true} />
           </Hidden>
-          {lessonData.courses.type === "podcast" ? (
+          {lessonData?.courses?.type === "podcast" ? (
             <div className="flex flex-col items-stretch justify-between gap-5 lg:flex-row">
               <div className="relative w-full max-w-sm overflow-hidden rounded-md">
                 <Image
@@ -67,7 +67,7 @@ export default function LessomPageLayout({ lessonId, courseId }: Props) {
                     src={lessonData.url_video}
                     poster={lessonData.picture}
                     lessonId={lessonId}
-                    type={lessonData.courses.type}
+                    type={lessonData?.courses?.type}
                   />
                 </Paper>
               </div>
@@ -75,11 +75,11 @@ export default function LessomPageLayout({ lessonId, courseId }: Props) {
           ) : (
             <Paper>
               <LessonVideo
-                progress={lessonData.progress}
-                src={lessonData.url_video}
-                poster={lessonData.picture}
+                progress={lessonData?.progress}
+                src={lessonData?.url_video}
+                poster={lessonData?.picture}
                 lessonId={lessonId}
-                type={lessonData.courses.type}
+                type={lessonData?.courses?.type}
               />
             </Paper>
           )}
@@ -102,7 +102,7 @@ export default function LessomPageLayout({ lessonId, courseId }: Props) {
             <div className="w-full lg:w-[375px]">
               <LessonsList
                 courseId={courseId}
-                type={lessonData.courses.type}
+                type={lessonData?.courses?.type}
                 invoices_exists={lessonData?.courses?.products?.paid}
               />
             </div>

@@ -29,9 +29,9 @@ export default function SiteAds({ categories }: Props) {
           return category ? (
             <NextLink
               key={catId}
-              style={{ color: category.color, borderColor: category.color }}
+              style={{ color: category?.color, borderColor: category?.color }}
               className="px-3 py-2 flex-1 min-w-[45%] font-medium lg:min-w-[200px] text-center rounded-md border-2 border-solid"
-              href={`/${category.slug}-${category.id}`}
+              href={`/${category?.slug}-${category?.id}`}
             >
               {category.name}
             </NextLink>

@@ -8,7 +8,9 @@ import { BlogListItem, Category } from "@/types";
 import { PaginateData } from "@/types/response";
 import { Suspense } from "react";
 import LoadingBox from "@/components/Assets/LoadingBox";
-import { getArticles, getCategory } from "@/lib/fetch";
+import { getArticles, getCategoreis, getCategory } from "@/lib/fetch";
+import ArticlesPageClient from "@/components/Routes/Articles/ArticlesPageClient";
+import LayoutLoading from "@/components/Assets/LayoutLoading";
 
 type Props = {
   params: {
@@ -18,6 +20,28 @@ type Props = {
     search: string;
   };
 };
+
+export async function generateStaticParams() {
+  const categories = await getCategoreis();
+
+  return categories.map((category: any) => ({
+    slug: `${category.slug}-${category.id}`,
+  }));
+}
+ async function fetchMYData(
+  categoryId: string | null | undefined,
+  search: string
+) {
+  try {
+    const articles = await getArticles(categoryId, search);
+
+    return {
+      articles,
+    };
+  } catch (error) {
+    throw new Error("Failed to fetch revenue data.");
+  }
+}
 
 export async function generateMetadata({
   params: { slug },
@@ -44,23 +68,9 @@ export default async function BlogsPage(props: Props) {
 
   const categoryId = slug ? slug?.split("-").pop() : null;
 
-  const articles = await getArticles(categoryId, search);
+  const { articles } = await fetchMYData(categoryId, search);
 
   return (
-    <Container>
-      <Suspense fallback={<LoadingBox />}>
-        <ArchiveLayout
-          mostLikes
-          pageType="article"
-          data={articles.data}
-          pageTitle="مقالات"
-          filterKeys={{
-            categories: "categoryId",
-            title: "search",
-          }}
-          teacherSelectHidden
-        />
-      </Suspense>
-    </Container>
+      <ArticlesPageClient articles={articles} />
   );
 }

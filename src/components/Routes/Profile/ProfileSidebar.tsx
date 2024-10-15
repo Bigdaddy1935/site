@@ -156,7 +156,7 @@ export default function ProfileSidebar() {
   );
 }
 
-const LoadingLayout = () => {
+export const LoadingLayout = () => {
   return (
     <div className="flex flex-col items-stretch">
       <Skeleton

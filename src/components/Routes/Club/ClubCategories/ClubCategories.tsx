@@ -24,7 +24,7 @@ export default function ClubCategories() {
   return (
     <div className="flex flex-col lg:flex-row items-stretch lg:items-start justify-between gap-[5%]">
       <div className=" lg:w-[240px] max-lg:mb-5 lg:sticky top-[90px]">
-        {user?.authority || user?.mahdyar_exists ? <ClubSearch /> : null}
+        {user?.authority || user?.mahdyar ? <ClubSearch /> : null}
         <CategoryListSidebar />
       </div>
 
@@ -33,7 +33,7 @@ export default function ClubCategories() {
 
         {activeContent === "lessons" ? (
           <ClubLessons />
-        ) : user?.authority || user?.mahdyar_exists ? (
+        ) : user?.authority || user?.mahdyar ? (
           <ClubQuestions />
         ) : (
           <div className="flex flex-col items-center gap-4 py-4">

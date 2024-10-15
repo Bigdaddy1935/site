@@ -5,7 +5,7 @@ import UserTicketItem, { UserTicketItemSkeleton } from './UserTicketItem';
 export default function UserTicketList() {
     const { data, isLoading } = useGetUserTicketQuery();
     return (
-        <div className='flex flex-col lg:flex-row flex-wrap max-h-full pb-10'>
+        <div className='flex flex-col lg:flex-row lg:flex-wrap pb-28 mb-32'>
             {isLoading ? <UserTicketItemSkeleton count={4} /> : data?.map(item => (
                     <UserTicketItem key={item.id} {...item} />
             ))}

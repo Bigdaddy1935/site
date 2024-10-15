@@ -11,10 +11,10 @@ export default function AdminReply(item: CommentItem) {
     return (
         user?.approved === 1 ?
             <div className='absolute flex items-center gap-4 left-1 top-0'>
-                <AcceptRejectBtn status={item.status} id={item.id} />
+                <AcceptRejectBtn status={item?.status} id={item.id} />
 
-                <RemoveBtn id={item.id} />
-                <ReplyBtn commentable_id={item.commentable_id} commentable_type={item.commentable_type} id={item.id} />
+                <RemoveBtn id={item?.id} />
+                <ReplyBtn commentable_id={item?.commentable_id} commentable_type={item?.commentable_type} id={item?.id} />
             </div> : null
     )
 }

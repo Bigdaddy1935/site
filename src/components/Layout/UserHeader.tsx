@@ -8,13 +8,13 @@ export default function UserHeader() {
       <Container className="flex  h-[4rem] items-center justify-center">
         <NextLink
           href={"/"}
-          className="relative inline-block h-12 w-[4rem] lg:w-[13rem]"
+          className="relative text-center inline-block h-[4rem] w-[4rem] lg:w-[13rem]"
         >
           <Image
-            className="object-contain"
+            className="object-contain mx-auto"
             src={"/logo.png"}
             alt="آکادمی روح بخش"
-            width={100}
+            width={80}
             height={50}
             priority
           />

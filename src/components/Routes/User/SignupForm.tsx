@@ -20,7 +20,7 @@ export default function SignupForm() {
   const methods = useForm();
   const router = useNextRouter();
 
-  if (!phone) router.push("/");
+ if (!phone) router.push("/user/check-user");
   const handleSubmit = async (values: any) => {
     registerUser({
       ...values,
@@ -28,12 +28,12 @@ export default function SignupForm() {
     }).then(({ error }) => {
       if (error) return;
 
-      // router.push("/profile");
+      router.push("/profile");
       toast.success("اطلاعات پروفایل کاربری شما با موفقیت در سیستم ثبت شد");
     });
   };
   return (
-    <div className="flex-1 flex flex-col justify-center max-w-[364px] lg:max-w-[520px] mx-auto">
+    <div className="flex-1 flex flex-col justify-center max-w-[394px] lg:max-w-[520px] mx-auto">
       <FormProvider {...methods}>
         <form
           className="flex w-full flex-col justify-center items-center gap-y-2"
@@ -70,12 +70,16 @@ export default function SignupForm() {
             name="lastname"
             label="نام خانوادگی"
           />
+
+<p className="text-sm text-primary-800 dark:text-hgray-200 mb-3 font-semibold">
+            برای ورود به وب سایت می توانید از این رمز عبوری که می سازید استفاده کنید
+          </p>
           <TextField
             className="bg-white"
             type="password"
             required
             name="password"
-            label="رمز عبور"
+            label="ساخت رمز عبور"
           />
           <TextField
             className="bg-white"
@@ -88,22 +92,22 @@ export default function SignupForm() {
           <TextField
             row
             name="IdentificationCode"
-            label="کد معرف دارید؟"
+            label="کد معرف دارید؟(اختیاری)"
             className="outline-1 outline !outline-primary-300 !p-1 max-w-[130px]"
           />
 
-          <div className="flex flex-col lg:flex-row-reverse items-center lg:gap-3">
-            <p className="text-sm font-medium text-center lg:text-right text-hgray-500 dark:text-text-dark-4 lg:flex-1">
+          <div className="w-full">
+            {/* <p className="text-sm font-medium text-center lg:text-right text-hgray-500 dark:text-text-dark-4 lg:flex-1">
               با تایید در سایت تمامی{" "}
               <Link className="text-blue-600" href={"#"}>
                 قوانین و شرایط
               </Link>{" "}
               استفاده از خدمات اکادمی روح بخش را پذیرفته اید.
-            </p>
+            </p> */}
             <LoadingButton
               loading={isLoading}
               disabled={isLoading || isSuccess}
-              className="lg:flex-1 lg:max-w-[45%]"
+              className="w-full block"
               type="submit"
               fullWidth
               color="primary"

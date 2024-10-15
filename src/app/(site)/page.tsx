@@ -42,12 +42,12 @@ export default async function HomePage() {
       <Container className="flex flex-col items-center justify-between py-12 lg:flex-row-reverse">
         <div className="w-full overflow-hidden lg:w-[65%] mb-10 lg:mb-0">
           <Suspense>
-            <ShowCases items={showcases.NotExpired} />
+            <ShowCases items={showcases?.NotExpired} />
           </Suspense>
         </div>
         <div className="w-full lg:w-[35%]">
           <Suspense>
-            <SiteAds categories={categories.filter((i: any) => i.id !== 17)} />
+            <SiteAds categories={categories?.filter((i: any) => i.id !== 17)} />
           </Suspense>
         </div>
       </Container>
@@ -89,9 +89,10 @@ export default async function HomePage() {
         <Suspense>
           <AudioPlayerProvider>
             <CartCarousel
-              data={latestPodcasts.slice(0, 8)}
+              data={latestPodcasts?.slice(0, 8)}
               display="carousel"
               type="podcast"
+              moreHref="/podcasts"
               title="آخرین پادکست ها"
             />
           </AudioPlayerProvider>
@@ -104,7 +105,7 @@ export default async function HomePage() {
         </Suspense>
 
         <Suspense>
-          <LatestComments items={latestComments.data} />
+          <LatestComments items={latestComments?.data} />
           <div className="my-20" />
         </Suspense>
       </Container>

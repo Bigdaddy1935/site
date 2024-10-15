@@ -54,11 +54,9 @@ export default function MoreItems(props: Props) {
     for (const key in filterKeys) {
       const allKeys = filterKeys[key]?.split(".");
       allParams[key] = allKeys?.reduce((a, b) => a?.[b], params);
-
     }
     return allParams;
   };
-
 
   const { data, loading, ref, showEnd } = useGetMorOnScroll({
     route: {
@@ -75,10 +73,6 @@ export default function MoreItems(props: Props) {
         <CartComponent key={item.id} {...item} />
       ))}
 
-      <div
-        className="col-span-1 md:col-span-2 lg:col-span-3 xl:grid-cols-4"
-        ref={ref}
-      />
       {loading && (
         <>
           <Hidden hidden="max-lg">
@@ -88,18 +82,20 @@ export default function MoreItems(props: Props) {
           </Hidden>
 
           <Hidden hidden="lg">
-            <div className="col-span-1 flex items-center justify-center rounded-lg border border-solid border-hgray-400 p-3 text-hgray-400 md:col-span-2 lg:col-span-3 xl:grid-cols-4 ">
+            <div className="col-span-1 flex items-center justify-center rounded-lg border border-solid border-hgray-400 p-3 text-hgray-400 md:col-span-2 lg:col-span-3 xl:grid-cols-3 ">
               <IconLoading width={22} height={22} className="ml-1" />
               <p className="text-sm font-medium">در حال دریافت موارد بیشتر</p>
             </div>
           </Hidden>
         </>
       )}
+
       {showEnd && (
-        <p className="col-span-1 py-5 text-center text-xl font-medium text-hgray-600 dark:text-text-dark-2 md:col-span-2 lg:col-span-3  xl:grid-cols-4">
+        <p className="py-5  text-center text-xl font-medium text-hgray-600 dark:text-text-dark-2 xl:col-span-3 sm:col-span-2">
           محتوای بیشتری جهت نمایش وجود ندارد
         </p>
       )}
+      {!showEnd && !loading && <div className="flex-1" ref={ref} />}
     </React.Fragment>
   );
 }

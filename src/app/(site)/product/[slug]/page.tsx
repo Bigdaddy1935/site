@@ -1,6 +1,8 @@
 import Container from "@/components/Assets/Container";
+import ProductPageClient from "@/components/Routes/SingleProductPage/ProductPageClient";
+import { cFetch } from "@/lib/fetch";
 import { abort } from "process";
-import ProductPageLayout from "@/components/Routes/SingleProductPage/ProductPageLayout";
+
 
 type Props = {
   params: {
@@ -12,14 +14,22 @@ type Props = {
   };
 };
 
+export async function generateStaticParams() {
+  const products = await cFetch("/products/ids");
+
+  return products.map((category: any) => ({
+    slug: `product-${category.id}`,
+  }));
+}
+
 export default function ProductPage({ params: { slug } }: Props) {
-  const productId = slug.split("-").pop();
+  const productId = slug?.split("-")?.pop();
 
   if (!productId) abort();
 
   return (
     <Container className="my-10 flex flex-col-reverse lg:flex-row lg:justify-between">
-      <ProductPageLayout productId={Number(productId)} />
+      <ProductPageClient productId={Number(productId)} />
     </Container>
   );
 }

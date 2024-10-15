@@ -40,9 +40,9 @@ export default function CartItem({
   return (
     <NextLink
       href={getHref()}
-      className="flex p-3 flex-col justify-between rounded-xl border border-hgray-300 dark:border-mdark-600"
+      className="flex p-3 flex-col justify-between rounded-[1.5rem] border border-hgray-300 dark:border-mdark-600"
     >
-      <div className="relative h-[172px] p-2 w-full overflow-hidden rounded-xl">
+      <div className="relative h-[156px] p-2 w-full overflow-hidden rounded-xl">
         <Image
           src={picture}
           alt="title"
