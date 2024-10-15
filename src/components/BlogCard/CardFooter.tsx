@@ -16,7 +16,7 @@ export default function CardFooter(props: Props) {
       <div className='flex items-center gap-2'>
         <ToggleBookmarkBtn {...props} model='article' />
 
-        <ShareBtn url={`/article/content-${props?.id}`}  />
+        <ShareBtn url={`/article/content-${props.id}`}  />
       </div>
 
 

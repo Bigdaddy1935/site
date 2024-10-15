@@ -24,7 +24,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const tagName = slug?.split("-")[0];
+  const tagName = slug.split("-")[0];
   if (!tagName) return {};
   return {
     title: `مقالات تگ ${decodeURI(tagName)} | آکادمی روح بخش`,
@@ -51,14 +51,14 @@ export default async function BlogTagPage({ params: { slug } }: Props) {
       </h1>
       <Suspense fallback={<LoadingBox />}>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {articels?.data?.length > 0 ? (
-            articels?.data?.map((item) => <BlogCart {...item} key={item?.id} />)
+          {articels.data.length > 0 ? (
+            articels.data.map((item) => <BlogCart {...item} key={item.id} />)
           ) : (
             <EmptyGrid />
           )}
 
           <ArticleMoreItem
-            lastPage={articels?.last_page}
+            lastPage={articels.last_page}
             tags={decodeURI(tagName)}
           />
         </div>

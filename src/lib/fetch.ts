@@ -7,7 +7,6 @@ import {
   CourseListItem,
   GalleryItem,
   LessenItem,
-  NewsItem,
   PodcastListItem,
   ProductListItem,
   ShowCase,
@@ -182,7 +181,7 @@ export const getMediaLessons = async (
   );
 };
 
-export const getPodcasts = async (categoryId: string | null, search: string | null) => {
+export const getPodcasts = async (categoryId: string, search: string) => {
   let querySearch = "?";
   querySearch += categoryId ? `categories=${categoryId}&` : "";
   querySearch += search ? `title=${search}` : "";
@@ -214,8 +213,4 @@ export const getTvLessons = async (
   courseId: string
 ): Promise<PaginateData<LessenItem>> => {
   return await cFetch(`/lessons/get/courseId/${courseId}`);
-};
-
-export const getNews = async (): Promise<NewsItem[]> => {
-  return await cFetch(`/home/notification/get`);
 };

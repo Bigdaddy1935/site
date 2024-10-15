@@ -14,7 +14,7 @@ export default function UserOrdersList() {
             {showDetails && selectedOrder ? <OrderDetails {...selectedOrder} /> : <>
 
                 {isLoading ? <Skeleton width={"100%"} height={"45px"} count={4} /> :
-                    data?.slice().sort((a,b)=> b.id - a.id).map(item => <OrderItem {...item} key={item.id} />)}
+                    data?.slice().sort((a,b)=> a.order_id - b.order_id).map(item => <OrderItem {...item} key={item.id} />)}
             </>}
         </div>
     )

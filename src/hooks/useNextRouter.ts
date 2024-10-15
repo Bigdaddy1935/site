@@ -1,4 +1,5 @@
 "use client"
+import { dispatchRouteChangeEvent } from "@/lib/routeChangeEvent/routeEvents";
 import { AppRouterInstance, NavigateOptions } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";

@@ -22,7 +22,7 @@ export default function PodcastCard(props: PodcastListItem) {
 
   const category = categories?.[0];
   return (
-    <div className="relative p-2 bg-white dark:bg-mdark-600 flex items-start rounded-[1.25rem] shadow-[0_0_2px_2px_#0000001a]">
+    <div className="relative p-2 bg-white dark:bg-mdark-600 flex items-start rounded-xl shadow-[0_0_2px_2px_#0000001a]">
       <div className="w-[100px]">
         <div className="mb-3 w-full">
           <AudioPlayer id={id} src={url_video}  picture={picture ?? '/temp-images/course-card.jpg'} />

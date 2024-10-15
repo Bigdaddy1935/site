@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { Controller, FieldValues, RegisterOptions, useFormContext } from 'react-hook-form';
 import { twMerge } from 'tailwind-merge';
 import TextInput from './TextInput';
-import IconAlertCircleOutline from '@/components/Icons/IconAlertCircleOutline';
 
 type Props = {
   name: string;
@@ -42,10 +41,10 @@ export default function TextField(props: Props) {
       rules={{
         ...rules,
         ...(required ? { required: `ورود فیلد ${label ?? 'فوق'} الزامی است` } : null),
-        ...(props?.type === 'password'
+        ...(props.type === 'password'
           ? { minLength: { value: 8, message: `فیلد ${label ?? 'فوق'} باید حداقل 8 کاراکتر باشد` } }
           : null),
-        ...(props?.type === 'password' && name === 'confirm-password'
+        ...(props.type === 'password' && name === 'confirm-password'
           ? {
               validate: (value) =>
                 value === watch('password') || 'رمز عبور و تکرار آن با یکدیگر مطابقت ندارند.'
@@ -63,20 +62,10 @@ export default function TextField(props: Props) {
             <label className="font-noraml text-base text-hgray-600 dark:text-text-dark-5 lg:min-w-[80px]">{label}</label>
           ) : null}
           <div className={`${!row && 'flex-1'} relative`}>
-            <TextInput error={error}  field={allField} {...{ className, ...allProps }} />
-            <p className="absolute -top-5 left-0 text-xs font-semibold text-rose-700">
+            <TextInput field={allField} {...{ className, ...allProps }} />
+            <p className="absolute -bottom-4 right-0 text-xs font-medium text-rose-700">
               {error ? error.message : ''}
             </p>
-
-            {error ? (
-              <span
-                className={`absolute text-rose-700 left-1 top-2 ${
-                  props.type === "password" ? "left-7" : "left-1"
-                }`}
-              >
-                <IconAlertCircleOutline width={26} height={26} />
-              </span>
-            ) : null}
           </div>
         </div>
       )}

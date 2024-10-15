@@ -24,20 +24,6 @@ html.dark .box-text-overflow-level-0:before {
   height: 60%;
 }
 
-body::-webkit-scrollbar {
-  width: 10px;
-  background-color: #dddddd;
-}
-
-body::-webkit-scrollbar-track {
-  background-color: transparent;
-  width: 5px;
-}
-body::-webkit-scrollbar-thumb {
-  background: #464646;
-  height: 5px;
-}
-
 .ltr {
   direction: ltr;
 }
@@ -119,6 +105,9 @@ input[type='number'] {
   margin: 2rem auto 1rem auto;
 }
 
+.video-player {
+  @apply w-full;
+}
 
 .controls input[type='range'] {
   @apply h-1 w-full appearance-none rounded-full outline-none;

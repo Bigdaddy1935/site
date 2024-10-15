@@ -41,16 +41,16 @@ const dispalycommentableType = (commentableType: string, commentable: any) => {
       linkHref = `/product/product-${(commentable as ProductListItem).id}`;
       break;
     case 'App\\Models\\Course':
-      rightText = `دوره: ${(commentable as CourseListItem)?.course_title}`;
-      linkHref = `/course/course-${(commentable as CourseListItem)?.id}`;
+      rightText = `دوره: ${(commentable as CourseListItem).course_title}`;
+      linkHref = `/course/course-${(commentable as CourseListItem).id}`;
       break;
     case 'App\\Models\\Article':
-      rightText = `مقاله: ${(commentable as BlogListItem)?.title}`;
-      linkHref = `/article/content-${(commentable as BlogListItem)?.id}`;
+      rightText = `مقاله: ${(commentable as BlogListItem).title}`;
+      linkHref = `/article/content-${(commentable as BlogListItem).id}`;
       break;
     case 'App\\Models\\Lesson':
-      rightText = `درس: ${(commentable as LessenItem)?.title}`;
-      linkHref = `/lessons/${(commentable as LessenItem)?.course_id}-${(commentable as LessenItem).id}`;
+      rightText = `درس: ${(commentable as LessenItem).title}`;
+      linkHref = `/lessons/${(commentable as LessenItem).course_id}-${(commentable as LessenItem).id}`;
       break;
 
     default:

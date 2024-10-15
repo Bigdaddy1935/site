@@ -161,7 +161,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     <>
       <div
         style={{ direction: "ltr" }}
-        className={`relative overflow-hidden rounded-3xl ${type !== "podcast" && "max-h-[75vh]"}`}
+        className={`relative overflow-hidden rounded-3xl ${type !== "podcast" && "max-h-[85vh]"}`}
       >
         {/*  {src.endsWith('.ts') ? (
         <TsVideoPlayer
@@ -178,7 +178,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           ref={videoRef}
           src={src}
           poster={poster ?? undefined}
-          className={`video-player w-[992px] mx-auto ${type === "podcast" && "h-20"}`}
+          className={`video-player ${type === "podcast" && "h-20"}`}
           muted={mute}
         >
           <source src={src} type="video/mp2t" />

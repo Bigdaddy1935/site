@@ -13,7 +13,7 @@ export default function UserTicketItem(item: Ticket) {
     const { showDetails, setShowDetails } = useTicketList();
     return (
         <React.Fragment>
-            {showDetails ? null : <div className='w-full lg:w-[50%] px-2 lg:px-5  my-2 lg:my-5'>
+            {showDetails ? null : <div className='w-full lg:w-[50%] px-5 my-5'>
                 <div className=' bg-white dark:bg-mdark-600 text-hgray-600 dark:text-white rounded-xl p-5 drop-shadow-md'>
                     <div className='flex justify-between items-start'>
 

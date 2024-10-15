@@ -1,7 +1,7 @@
 import ArchiveLayout from "@/components/ArchiveLayout";
 import Container from "@/components/Assets/Container";
 import AudioPlayerProvider from "@/components/Assets/AudioPlayer/AudioPlayerContext";
-import { getCategoreis, getPodcasts } from "@/lib/fetch";
+import { getPodcasts } from "@/lib/fetch";
 
 type Props = {
   params: {
@@ -12,24 +12,7 @@ type Props = {
   };
 };
 
-/* export async function generateStaticParams() {
-  const categories = await getCategoreis();
 
-  return categories.map((category: any) => ({
-    slug: `${category.slug}-${category.id}`,
-  }));
-} */
-async function fetchMYData(categoryId: string, search: string) {
-  try {
-    const podcasts = await getPodcasts(categoryId, search);
-
-    return {
-      podcasts,
-    };
-  } catch (error) {
-    throw new Error("Failed to fetch revenue data.");
-  }
-}
 
 export default async function PodcastPage(props: Props) {
   const {
@@ -39,7 +22,7 @@ export default async function PodcastPage(props: Props) {
 
   const categoryId = slug?.split("-").pop() ?? "";
 
-  const { podcasts } = await fetchMYData(categoryId, search);
+  const podcasts = await getPodcasts(categoryId, search);
 
   return (
     <Container>
@@ -47,7 +30,7 @@ export default async function PodcastPage(props: Props) {
         <ArchiveLayout
           pageType="podcast"
           pageTitle="پادکست"
-          data={podcasts?.data}
+          data={podcasts.data}
           mostLikes
           teacherSelectHidden
           filterKeys={{

@@ -34,8 +34,16 @@ export default function NavMenu() {
         </NextLink>
       ))}
       <EducationContent />
-      
+      <div className="group flex w-full lg:w-auto  lg:items-center lg:justify-start">
+        <Hidden hidden="max-lg">
+          <EmptyButton className="rtr peer mr-3 flex w-full items-center font-semibold text-primary-300 dark:text-mdark-300 lg:w-auto ">
+            بیشتر
+            <IconCaretDown width={22} height={22} />
+            <div className="mx-3  block h-0.5 flex-1 bg-hgray-300 dark:bg-mdark-400" />
+          </EmptyButton>
+        </Hidden>
         <DesktopMoreItemsPopup />
+      </div>
       {/*             <div className='flex-1 w-[200px] h-[60px] hidden lg:block lg:z-30' />
        */}{' '}
     </div>

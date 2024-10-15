@@ -50,13 +50,13 @@ function BreadCrumbItem({
         <span className="absolute z-[10] w-[20px] right-[-10px] top-0 bottom-0 border-b-[20px] border-t-[20px] border-r-[10px] border-y-hgray-200 dark:border-y-mdark-600 border-solid  border-r-transparent" />
       )}
       <Link
-        className={`relative text-sm block z-[20] px-2 ${lastItem ? "font-medium" : "font-light"}`}
+        className={`relative block z-[20] px-2 ${lastItem ? "font-medium" : "font-light"}`}
         href={href}
       >
         {label}
       </Link>
       {!lastItem && (
-        <span className="absolute text-sm z-[10] w-[20px] left-[-20px] top-0 bottom-0 border-b-[20px] border-t-[20px] border-r-[10px] border-y-transparent border-solid  border-r-hgray-200 dark:border-r-mdark-600" />
+        <span className="absolute z-[10] w-[20px] left-[-20px] top-0 bottom-0 border-b-[20px] border-t-[20px] border-r-[10px] border-y-transparent border-solid  border-r-hgray-200 dark:border-r-mdark-600" />
       )}
     </div>
   );
@@ -75,12 +75,12 @@ export function LessonBreadCrump({
         href: "/media/medias",
       },
       {
-        label: lessonMediaType[courses?.type]?.label,
-        href: `/media/${lessonMediaType[courses?.type]?.href}`,
+        label: lessonMediaType[courses.type]?.label,
+        href: `/media/${lessonMediaType[courses.type]?.href}`,
       },
       {
         label: courses?.course_title,
-        href: `/media/${lessonMediaType[courses?.type]?.href}/course-${courses.id}`,
+        href: `/media/${lessonMediaType[courses.type]?.href}/course-${courses.id}`,
       },
     ];
   };
@@ -116,28 +116,28 @@ export function LessonBreadCrump({
       },
       {
         label: courses?.course_title,
-        href: `/${courses?.type}/${courses?.type}-${courses.id}`,
+        href: `/${courses.type}/${courses.type}-${courses.id}`,
       },
     ];
   };
   const createDefaultLessonItems = (): BreadCrumbItem[] => {
     return [
       {
-        label: lessonType[courses?.type]?.label,
-        href: `/${lessonType[courses?.type]?.href}`,
+        label: lessonType[courses.type]?.label,
+        href: `/${lessonType[courses.type]?.href}`,
       },
       {
         label: lessonData?.categories[0]?.name,
-        href: `/${lessonType[courses?.type]?.href}/${lessonData?.categories[0]?.slug}-${lessonData?.categories[0]?.id}`,
+        href: `/${lessonType[courses.type]?.href}/${lessonData?.categories[0]?.slug}-${lessonData?.categories[0]?.id}`,
       },
       {
         label: courses?.course_title,
-        href: `/${courses?.type}/${courses?.type}-${courses?.type === "product" ? courses.products?.id : courses.id}`,
+        href: `/${courses.type}/${courses.type}-${courses.type === "product" ? courses.products?.id : courses.id}`,
       },
     ];
   };
   const createBreadCrump = () => {
-    switch (courses?.type) {
+    switch (courses.type) {
       case "media":
       case "mahdyar":
       case "kolbe":

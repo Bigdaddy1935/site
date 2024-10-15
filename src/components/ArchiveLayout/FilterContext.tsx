@@ -61,16 +61,16 @@ export default function FilterProvider({
   const handleSetFilters = (selectedfilter: FilterType) => {
     const allFilters = { ...filters, ...selectedfilter };
     let queryStr = "";
-    delete allFilters?.categoryId;
+    delete allFilters.categoryId;
     for (const key in allFilters) {
       const value = (allFilters as KeyValue)[key];
 
       if (value === undefined || value === null || value === "") continue;
-      const sign = queryStr?.length > 0 ? "&" : "?";
+      const sign = queryStr.length > 0 ? "&" : "?";
       queryStr += `${sign}${key}=${value}`;
     }
     //  router.push();
-    router?.replace(`${pathname}${queryStr}`);
+    router.replace(`${pathname}${queryStr}`);
   };
 
   return (

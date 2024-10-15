@@ -23,7 +23,7 @@ export default async function GalleryPage() {
         <Suspense fallback={<LoadingBox />}></Suspense>
         <div className="mt-16 flex flex-col gap-5">
           {galley.map((item: GalleryItemType) => (
-            <GalleyItem key={item?.id} {...item} />
+            <GalleyItem key={item.id} {...item} />
           ))}
         </div>
       </div>

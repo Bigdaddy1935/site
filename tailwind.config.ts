@@ -6,7 +6,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: "class",
+  darkMode:"class",
   theme: {
     extend: {
       fontFamily: {
@@ -78,11 +78,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    function ({ addVariant }: any) {
-      addVariant("child", "& > *");
-      addVariant("child-hover", "& > *:hover");
-    },
-  ],
+  plugins: [],
 };
 export default config;

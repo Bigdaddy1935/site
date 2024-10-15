@@ -24,7 +24,7 @@ export default function AcceptRejectBtn(props: Props) {
 
     useEffect(() => {
         if (data) {
-            setCurrentStatus(data?.status)
+            setCurrentStatus(data.status)
         }
     }, [data])
 

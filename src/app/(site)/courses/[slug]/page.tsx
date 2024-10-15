@@ -1,6 +1,9 @@
-import { getCategoreis, getCategory, getCourses } from "@/lib/fetch";
+import ArchiveLayout from "@/components/ArchiveLayout";
+import Container from "@/components/Assets/Container";
+import { Suspense } from "react";
+import LoadingBox from "@/components/Assets/LoadingBox";
+import { getCategory, getCourses } from "@/lib/fetch";
 import { Metadata } from "next";
-import CoursesPageClient from "@/components/Routes/Courses/CoursesPageClient";
 
 type Props = {
   params: {
@@ -12,28 +15,6 @@ type Props = {
   };
 };
 
-export async function generateStaticParams() {
-  const categories = await getCategoreis();
-
-  return categories.map((category: any) => ({
-    slug: `${category.slug}-${category.id}`,
-  }));
-}
-async function fetchMYData(
-  categoryId: string | null | undefined,
-  teacherName: string,
-  search: string
-) {
-  try {
-    const courses = await getCourses(categoryId, teacherName, search);
-
-    return {
-      courses,
-    };
-  } catch (error) {
-    throw new Error("Failed to fetch revenue data.");
-  }
-}
 export async function generateMetadata({
   params: { slug },
 }: {
@@ -60,20 +41,30 @@ export default async function CoursesPage(props: Props) {
 
   const categoryId = slug ? slug?.split("-").pop() : null;
 
-  const teacherName = teacher
-    ? teacher?.split("_")?.slice(0, -1)?.join(" ")
-    : "";
+  const teacherName = teacher ? teacher.split("_").slice(0, -1).join(" ") : "";
 
-  const { courses } = await fetchMYData(categoryId, teacherName, search);
+  const courses = await getCourses(categoryId, teacherName, search);
 
   return (
-    <CoursesPageClient
-      courses={courses}
-      filters={{
-        categoryId: categoryId ? Number(categoryId) : null,
-        search,
-        teacher: teacherName,
-      }}
-    />
+    <Container>
+      <Suspense fallback={<LoadingBox />}>
+        <ArchiveLayout
+          pageType="course"
+          mostLikes
+          pageTitle="دوره ها"
+          data={courses.data}
+          filters={{
+            categoryId: Number(categoryId),
+            search,
+            teacher: teacherName,
+          }}
+          filterKeys={{
+            course_title: "search",
+            course_teacher: "teacher",
+            categories: "categoryId",
+          }}
+        />
+      </Suspense>
+    </Container>
   );
 }

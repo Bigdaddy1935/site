@@ -42,11 +42,11 @@ export default function LessonItem(props: Props) {
 
   const userCanSeeLesson = useMemo(() => {
     if (type === "product" && !invoices_exists) return false;
-    if (type === "club" && !user?.mahdyar && !user?.authority)
+    if (type === "club" && !user?.mahdyar_exists && !user?.authority)
       return false;
 
     return true;
-  }, [user , invoices_exists]);
+  }, [user]);
 
   return (
     <div className="flex items-stretch  justify-between gap-3">

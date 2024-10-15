@@ -19,7 +19,7 @@ export default function ArchiveContent(props: ArchiveLayoutProps) {
     cartType = "mostLikes",
   } = props;
   return (
-    <div className="flex max-w-[1150px] items-start justify-start flex-col">
+    <div className="flex max-w-[1150px]  flex-1 flex-col">
       {mostLikes ? (
         <FavoritesCarousel
           type={pageType}
@@ -34,28 +34,28 @@ export default function ArchiveContent(props: ArchiveLayoutProps) {
         <ArchiveBanner />
       )}
 
-      <div className="mt-10 w-full grid sm:grid-cols-2  xl:grid-cols-3 flex-1 gap-8 pb-48">
+      <div className="mt-10 grid grid-cols-1 gap-8 pb-48 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
         {data?.length === 0 ? <EmptyGrid /> : null}
         {data?.map((item: any) => (
           <React.Fragment>
             <>
               {pageType === "article" ? (
-                <BlogCart key={item?.id} {...item} />
+                <BlogCart key={item.id} {...item} />
               ) : null}
             </>
             <>
               {pageType === "course" ? (
-                <CourseCard key={item?.id} {...item} />
+                <CourseCard key={item.id} {...item} />
               ) : null}
             </>
             <>
               {pageType === "product" ? (
-                <ProductCard key={item?.id} {...item} />
+                <ProductCard key={item.id} {...item} />
               ) : null}
             </>
             <>
               {pageType === "podcast" ? (
-                <PodcastCard key={item?.id} {...item} />
+                <PodcastCard key={item.id} {...item} />
               ) : null}
             </>
           </React.Fragment>

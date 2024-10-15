@@ -27,7 +27,7 @@ const items = [
 
 type Props = {
   courseType: CourseType;
-  currentCourseId: number | string;
+  currentCourseId: number | null | undefined;
   courses : CourseListItem[] | undefined
 };
 export default function MediaSidebar(props: Props) {
@@ -58,9 +58,9 @@ export default function MediaSidebar(props: Props) {
                 <ActiveLink
                   poinerClass="right"
                   isDefaultLink={courseType === item.href}
-                   defaultLink={{
-                    link: `/media/${courseType}${currentCourseId !== "all_media" ? "/course-" + currentCourseId : ""}`,
-                  }} 
+                  defaultLink={{
+                    link: `/media/${courseType}${currentCourseId ? "/course-" + currentCourseId : ""}`,
+                  }}
                   key={item.href}
                   activeClassName="text-primary-300 dark:text-text-dark-1 bg-primary-50 dark:bg-mdark-400"
                   className="block rounded-md border-b border-solid border-hgray-200 text-center text-primary-700 dark:border-mdark-600 dark:text-hgray-200 max-lg:p-2 lg:my-2 lg:py-3 lg:text-lg"
@@ -143,7 +143,7 @@ export default function MediaSidebar(props: Props) {
 type SidebarLinkProps = {
   course: CourseListItem | { course_title: string; id?: undefined };
   courseType: CourseType;
-  currentCourseId?: number | string ;
+  currentCourseId?: number | null;
 };
 
 function SidebarLink({
@@ -155,7 +155,7 @@ function SidebarLink({
     <ActiveLink
       isDefaultLink={currentCourseId === course.id}
       poinerClass="right"
-      defaultLink={{ link: `/media/${courseType}/` }}
+      defaultLink={{ link: `/media/${courseType}` }}
       activeClassName="text-primary-300 dark:text-text-dark-1 bg-primary-50 dark:bg-mdark-400"
       className="inline-block rounded-md border-b border-solid border-hgray-200 text-center text-sm text-primary-700 dark:border-mdark-600 dark:text-hgray-200 max-lg:rounded-md max-lg:border-none max-lg:p-2 lg:my-2 lg:block lg:max-w-[95px] lg:py-3"
       href={`/media/${courseType}${course.id ? "/course-" + course.id : ""}`}

@@ -15,7 +15,7 @@ export default function LoginButton({
   const { handleLogin } = useHandleLogin();
   return (
     <React.Fragment>
-      <EmptyButton className="flex" type="button" onClick={()=>handleLogin()}>
+      <EmptyButton className="flex" type="button" onClick={handleLogin}>
         <Hidden hidden="lg">
           <IconUser_male_circle
             width={36}

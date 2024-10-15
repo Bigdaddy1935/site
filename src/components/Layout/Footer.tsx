@@ -203,24 +203,7 @@ async function Footer() {
               </div>
 
               <div className="mt-4 flex justify-center gap-4">
-              {/*   <a
-                  referrerPolicy="origin"
-                  target="_blank"
-                  href="https://trustseal.enamad.ir/?id=348262&Code=Pa2pW7Yo0nLprgD51wQIdxurnucHotxY"
-                >
-                  <img
-                    referrerPolicy="origin"
-                    src="https://trustseal.enamad.ir/logo.aspx?id=348262&Code=Pa2pW7Yo0nLprgD51wQIdxurnucHotxY"
-                    alt=""
-                    style={{
-                      cursor: "pointer",
-                      width: "100px",
-                      height: "100px",
-                    }}
-                    code="Pa2pW7Yo0nLprgD51wQIdxurnucHotxY"
-                  />
-                </a> */}
-                {/* <Image
+                <Image
                   className="rounded-lg"
                   width={100}
                   height={100}
@@ -233,7 +216,7 @@ async function Footer() {
                   height={100}
                   alt=""
                   src={"/temp-images/saman.png"}
-                /> */}
+                />
               </div>
             </div>
           </div>

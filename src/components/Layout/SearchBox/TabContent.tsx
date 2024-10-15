@@ -27,15 +27,15 @@ export default function TabContent(props: TabContentProps) {
 
   const getCourseHref = (course: CourseListItem | undefined) => {
     if (!course) return "#";
-    if (course?.type === "course") return `/course/course-${course.id}`;
-    if (course?.type === "product") return `/product/product-${course.id}`;
-    if (course?.type === "tv") return `/tv/course-${course.id}`;
-    if (course?.type === "podcast") return `/podcast/course-${course.id}`;
+    if (course.type === "course") return `/course/course-${course.id}`;
+    if (course.type === "product") return `/product/product-${course.id}`;
+    if (course.type === "tv") return `/tv/course-${course.id}`;
+    if (course.type === "podcast") return `/podcast/course-${course.id}`;
 
-    if (course?.type === "media") return `/media/medias/course${course.id}`;
+    if (course.type === "media") return `/media/medias/course${course.id}`;
 
-    if (course?.type === "kolbe" || course?.type === "mahdyar")
-      return `/media/${course?.type}/course-${course.id}`;
+    if (course.type === "kolbe" || course.type === "mahdyar")
+      return `/media/${course.type}/course-${course.id}`;
 
     return "#";
   };

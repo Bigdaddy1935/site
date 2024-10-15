@@ -15,18 +15,18 @@ import React from "react";
 function Header() {
   return (
     <header className="sticky top-0 z-30 w-full border-b border-hgray-300 bg-hgray-100 dark:border-mdark-400 dark:bg-mdark-600">
-   {/*    <ScrollHidden height={65}>
+      <ScrollHidden height={65}>
         <HeaderAds />
-      </ScrollHidden> */}
+      </ScrollHidden>
       <SearchBoxProvider>
-        <Container className="flex h-[4rem] items-center justify-between">
+        <Container className="flex  h-[4rem] items-center justify-between">
           <Hidden hidden="max-lg">
             <NextLink href={"/"} className="relative inline-block">
               <Image
                 className="object-contain"
                 src={"/logo.png"}
                 alt="آکادمی روح بخش"
-                width={80}
+                width={100}
                 height={50}
                 priority
               />

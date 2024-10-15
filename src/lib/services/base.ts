@@ -173,7 +173,7 @@ export const {
   useGetMostLikesQuery,
   useGetCourseDataQuery,
   useGetLessonDataQuery,
-  useLazyGetProductDataQuery,
+  useGetProductDataQuery,
   useGetArticleDataQuery,
   useGetMediaCoursesQuery,
   useGetTvCoursesQuery,

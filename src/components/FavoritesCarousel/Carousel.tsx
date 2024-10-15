@@ -58,9 +58,9 @@ export default function Carousel({
     };
   };
   return (
-    <div className="overflow-hidden lg:max-w-[calc(100vw-403px)]">
+    <div className="overflow-hidden">
       {
-        <div className="w-[calc(100%+200px)] lg:w-[calc(100%+100px)]">
+        <div className="w-[160%] lg:w-[120%]">
           <Swiper
             spaceBetween={20}
             slidesPerView={2}
@@ -79,26 +79,15 @@ export default function Carousel({
             }}
             modules={[Pagination, Navigation]}
             breakpoints={{
-              420: {
-                slidesPerView: 2,
-              },
-              640 : {
-                slidesPerView : 3
+              640: {
+                slidesPerView: 3,
               },
               768: {
                 slidesPerView: 4,
               },
               1024: {
-                slidesPerView: 3,
+                slidesPerView: 5,
               },
-
-              1280: {
-                slidesPerView: 4,
-              },
-
-              1530 : {
-                slidesPerView : 5
-              }
             }}
           >
             {data?.map((item, index) => (

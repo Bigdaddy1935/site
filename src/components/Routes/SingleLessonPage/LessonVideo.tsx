@@ -74,7 +74,7 @@ export default function LessonVideo({
       return false;
     }
 
-    if (type === "club" && !user?.mahdyar) {
+    if (type === "club" && !user?.mahdyar_exists) {
       setError({
         message: "جهت مشاهده این درس ثبت نام در مهدیارشو الزامی است.",
         mode: "club",
@@ -108,7 +108,7 @@ export default function LessonVideo({
           poster={poster}
         />
       ) : (
-        <div className="relative rounded-2xl overflow-hidden h-[300px] lg:h-[85vh] p-2">
+        <div className="relative rounded-3xl overflow-hidden h-[300px] lg:h-[85vh] p-2">
           {poster ? (
             <Image fill className="object-[unset]" src={poster} alt="" />
           ) : null}

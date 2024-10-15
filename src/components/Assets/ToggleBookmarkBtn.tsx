@@ -3,6 +3,7 @@ import EmptyButton from '@/components/Assets/EmptyButton';
 import IconBookmark from '@/components/Icons/IconBookmark';
 import IconBookmarkFill from '@/components/Icons/IconBookmarkFill';
 import IconLoading from '@/components/Icons/IconLoading';
+import { useLoginPopup } from '@/lib/LoginPopupContext';
 import { selectUser } from '@/lib/reduxFeatures/authSlice';
 import { useAppSelector } from '@/lib/reduxHooks';
 import { useBookmarkMutation } from '@/lib/services/auth';
@@ -19,6 +20,7 @@ export default function ToggleBookmarkBtn(props: Props) {
     const { bookmark, id, model } = props;
     const [click, setClick] = useState(bookmark);
     const [handleBookmark, { isLoading }] = useBookmarkMutation();
+    const { setActive } = useLoginPopup();
     const user = useAppSelector(selectUser);
     const handleClick = () => {
         if (!isLoading)

@@ -15,7 +15,7 @@ export default function SignupPage() {
                 <BackBtn />
             </div>
             <Suspense>
-                <Paper className="w-[97%] max-w-lg mx-auto  lg:p-10">
+                <Paper className="w-[90%] max-w-lg mx-auto  lg:p-10">
                     <SignupForm />
                 </Paper>
 

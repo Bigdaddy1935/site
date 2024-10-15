@@ -38,7 +38,7 @@ export default function Statistics(statistics: StatisticsProps) {
           >
             <Counter targetNumber={item.target ?? statistics[item.key] ?? 0} />
             <p className="pr-8  text-xl font-bold text-hgray-600 dark:text-text-dark-2">
-              {item?.label}
+              {item.label}
             </p>
           </Paper>
         ))}
