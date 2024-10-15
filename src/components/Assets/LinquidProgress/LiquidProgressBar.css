@@ -1,0 +1,175 @@
+/* LiquidProgressBar.css */
+/* Imported fonts */
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/yekan-font@1.0.0/css/yekan-font.min.css');
+
+/* Variables */
+:root {
+  --color-primary: #1a2556;
+  --color-secondary: #a5b3d4;
+  --color-gray: #dde6f3;
+  --color-light-gray: #f3f6fb;
+  --color-white: white;
+  --color-black: #3e3743;
+  --color-progress: #80d3c9;
+  --color-progress-alpha: #00a693;
+}
+
+/* Styles */
+.progress {
+  --progress-value: 50;
+  --progress-indicator-size: 220px;
+  --progress-indicator-mobile-size: 200px;
+  --progress-size: 120px;
+  --progress-mobile-size: 80px;
+  --progress-inner-size: calc(var(--progress-size) - 10px);
+}
+
+.progress::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  min-width: 8px;
+  min-height: 8px;
+  transform: translate(-50%, -50%);
+}
+
+.progress[data-value='100'] {
+  --color-progress: #557c55;
+  --color-progress-alpha: #a6cf98;
+}
+
+.progress[data-value='100']::before {
+  animation: progress-firework 1.3s 0.1s ease infinite both;
+}
+
+.progress,
+.progress-inner {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  width: var(--progress-size);
+  height: var(--progress-size);
+  border-radius: var(--progress-size);
+  background: var(--color-light-gray);
+}
+
+html.dark .progress,
+html.dark .progress-inner {
+  background: var(--color-black);
+}
+
+.progress-inner {
+  width: var(--progress-inner-size);
+  height: var(--progress-inner-size);
+  border: none;
+  margin: auto;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 1190px) {
+  .progress,
+  .progress-inner {
+    width: var(--progress-mobile-size);
+    height: var(--progress-mobile-size);
+    border-radius: var(--progress-mobile-size);
+  }
+}
+.progress--upper-half-value .progress-label {
+  color: var(--color-light-gray) !important;
+}
+
+.progress-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  color: var(--color-black);
+  text-align: center;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.progress-label strong {
+  display: block;
+  font-weight: 600;
+  color: #004840;
+}
+.progress-label span {
+  display: block;
+  font-weight: 600;
+  color: #004840;
+}
+
+html.dark .progress-label strong,
+html.dark .progress-label span {
+  color: #f3f6fb;
+}
+
+.progress-indicator {
+  background: var(--color-progress);
+  transform-origin: center center;
+  opacity: 0.6;
+  animation: progress-wave-animation 8s linear infinite both;
+  position: absolute;
+  top: calc(100% - var(--progress-value) * 1%);
+  left: 50%;
+  right: -50%;
+  width: var(--progress-indicator-size);
+  height: var(--progress-indicator-size);
+  border-radius: calc(var(--progress-indicator-size) / 2.5);
+}
+
+@media only screen and (max-width: 1190px) {
+  .progress-indicator {
+    width: var(--progress-indicator-mobile-size);
+    height: var(--progress-indicator-mobile-size);
+    border-radius: calc(var(--progress-indicator-mobile-size) / 2.5);
+  }
+}
+
+.progress-indicator:nth-child(2) {
+  background: var(--color-progress-alpha);
+  transform: rotate(90deg);
+  border-radius: 90px;
+}
+
+@keyframes progress-firework {
+  from,
+  0% {
+    width: 50%;
+    height: 50%;
+    background: var(--color-progress);
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  to,
+  100% {
+    width: 150%;
+    height: 150%;
+    background: var(--color-progress-alpha);
+    opacity: 0;
+  }
+}
+
+@keyframes progress-wave-animation {
+  to,
+  100% {
+    transform: rotate(360deg);
+  }
+}
